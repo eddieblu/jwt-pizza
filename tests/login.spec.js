@@ -6,30 +6,6 @@ test('home page', async ({ page }) => {
   expect(await page.title()).toBe('JWT Pizza');
 });
 
-// test('buy pizza with login', async ({ page }) => {
-//     await page.goto('/');
-//     await page.getByRole('link', { name: 'Login' }).click();
-//     await page.getByRole('textbox', { name: 'Email address' }).click();
-//     await page.getByRole('textbox', { name: 'Email address' }).fill('d@jwt.com');
-//     await page.getByRole('textbox', { name: 'Password' }).click();
-//     await page.getByRole('textbox', { name: 'Password' }).fill('diner');
-//     await page.getByRole('button', { name: 'Login' }).click();
-//     await expect(page.getByRole('link', { name: 'pd' })).toBeVisible();
-//     await expect(page.getByRole('link', { name: 'Logout' })).toBeVisible();
-//     await page.getByRole('link', { name: 'Order' }).click();
-//     await page.getByRole('combobox').selectOption('1');
-//     await page.getByRole('link', { name: 'Image Description Veggie A' }).click();
-//     await page.getByRole('link', { name: 'Image Description Veggie A' }).click();
-//     await expect(page.getByText('Selected pizzas:')).toBeVisible();
-//     await expect(page.locator('form')).toContainText('Selected pizzas: 2');
-//     await page.getByRole('button', { name: 'Checkout' }).click();
-//     await expect(page.getByRole('main')).toContainText('Send me those 2 pizzas right now!');
-//     await page.getByRole('button', { name: 'Pay now' }).click();
-//     await expect(page.getByRole('heading')).toContainText('Here is your JWT Pizza!');
-//     await expect(page.getByRole('main')).toContainText('2');
-//     await expect(page.getByRole('main')).toContainText('0.008 ₿');
-// });
-
 test('purchase with login', async ({ page }) => {
     await page.route('*/**/api/order/menu', async (route) => {
       const menuRes = [
