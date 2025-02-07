@@ -83,6 +83,32 @@ test('Create Franchise as Admin', async ({ page }) => {
   await page.getByPlaceholder('franchisee admin email').fill('f@jwt.com');
   await page.getByRole('button', { name: 'Create' }).click();
 
-
+  // Check Franchise was created 
   await expect(page.getByRole('table')).toContainText('pizzaPocket');
+
+  // Routing for Delete store
+  await page.route('*/**/api/franchise/*/store/*', async (route) => {
+    const deleteStoreRes = { "message": "store deleted" };
+    expect(route.request().method()).toBe('DELETE');
+    await route.fulfill({ json: deleteStoreRes });
+  });
+
+  // Routing for Delete franchise
+  await page.route('*/**/api/franchise/*', async (route) => {
+    const deleteFranchiseRes = { "message": "franchise deleted" };
+    expect(route.request().method()).toBe('DELETE');
+    await route.fulfill({ json: deleteFranchiseRes });
+  });
+
+  // Delete Store
+  await expect(page.getByRole('table')).toContainText('SLC');
+  await page.getByRole('row', { name: 'SLC 0 ₿ Close' }).getByRole('button').click();
+  await expect(page.getByRole('list')).toContainText('close-store');
+  await page.getByRole('button', { name: 'Close' }).click();
+  
+  // Delete Franchise
+  await expect(page.getByRole('table')).toContainText('pizzaPocket');
+  await page.getByRole('row', { name: 'pizzaPocket pizza' }).getByRole('button').click();
+  await expect(page.getByRole('list')).toContainText('close-franchise');
+  await page.getByRole('button', { name: 'Close' }).click();
 });
