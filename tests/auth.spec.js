@@ -120,6 +120,33 @@ test('register diner', async ({ page }) => {
 });
 
 test('login to logout', async ({ page }) => {
-  // await page.getByRole('link', { name: 'Logout' }).click();
-  // await expect(page.locator('#navbar-dark')).toContainText('Login');
+  await page.route('*/**/api/auth', async (route) => {
+    if (route.request().method() === 'PUT') {
+      const loginReq = { email: 'd@jwt.com', password: 'a' };
+      const loginRes = { user: { id: 3, name: 'Kai Chen', email: 'd@jwt.com', roles: [{ role: 'admin' }] }, token: 'abcdef' };
+      expect(route.request().postDataJSON()).toMatchObject(loginReq);
+      await route.fulfill({ json: loginRes });
+    }
+    else if (route.request().method() === 'DELETE') {
+      await route.fulfill({ json: { "message": "logout successful" } });
+    }
+  });
+
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Login' }).click();
+
+  // Login 
+  await page.getByPlaceholder('Email address').click();
+  await page.getByPlaceholder('Email address').fill('d@jwt.com');
+  await page.getByPlaceholder('Email address').press('Tab');
+  await page.getByPlaceholder('Password').fill('a');
+  await page.getByRole('button', { name: 'Login' }).click();
+
+  // Check login
+  await expect(page.locator('#navbar-dark')).toContainText('Logout');
+
+
+  // Logout
+  await page.getByRole('link', { name: 'Logout' }).click();
+  await expect(page.locator('#navbar-dark')).toContainText('Login');
 });
