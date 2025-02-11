@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from 'playwright-test-coverage';
 
 test('See Franchisee Dashboard', async ({ page }) => {
   // mock route for franchisee login
@@ -35,11 +35,10 @@ test('See Franchisee Dashboard', async ({ page }) => {
   await expect(page.locator('#navbar-dark')).toContainText('Logout');
   await expect(page.locator('#navbar-dark')).toContainText('Franchise');
 
-  // Check Franchisee Dashboard
   await page.getByLabel('Global').getByRole('link', { name: 'Franchise' }).click();
-  await expect(page.getByRole('list')).toContainText('franchise-dashboard');
 
-  // FRANCHISEE DASHBOARD is not getting got 
+  // Check Franchisee Dashboard
+  await expect(page.getByRole('list')).toContainText('franchise-dashboard');
   await expect(page.getByRole('main')).toContainText('Everything you need to run an JWT Pizza franchise. Your gateway to success.');
   await expect(page.getByRole('button', { name: 'Create store' })).toBeVisible();
 });
