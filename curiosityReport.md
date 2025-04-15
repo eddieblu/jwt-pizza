@@ -88,9 +88,11 @@ After being logged in successfully, next is officially publishing to npm.
 > At this point I tried to publish my package, but I couldn't. I found out it is because the name of my package is too generic ("curiosity") and was already taken as a public package. Here are some screenshots that show what I learned through this process:
 
 Failing to publish:
+
 ![Screenshot of failing to publish](screenshot-failtopublish.png)
 
 Information of who owns the public `curiosity` package:
+
 ![Screenshot of owner](screenshot-owner.png)
 
 I renamed my package to `curiosity-bethany` and tried again to publish.
