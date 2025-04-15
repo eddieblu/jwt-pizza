@@ -76,5 +76,35 @@ console.log(helloCuriosity());
 
 Once I was sure the package works the way it's supposed to (it's very simple, so there's no doubt) it's time to publish it. 
 
+### Log in to npm
+I had to log in to npm from the root of my package.
+
+![Screenshot of logging into npm](screenshot-npmlogin.png)
+
+### Publish to npm
+After being logged in successfully, next is officially publishing to npm.
+
 > [!NOTE]
-> I want the readers to read it carefully as it contains many important docs.
+> At this point I tried to publish my package, but I couldn't. I found out it is because the name of my package is too generic ("curiosity") and was already taken as a public package. Here are some screenshots that show what I learned through this process:
+
+Failing to publish:
+![Screenshot of failing to publish](screenshot-failtopublish.png)
+
+Information of who owns the public `curiosity` package:
+![Screenshot of owner](screenshot-owner.png)
+
+I renamed my package to `curiosity-bethany` and tried again to publish.
+
+![Screenshot of succeeding to publish](screenshot-succeedtopublish.png)
+
+(It works)
+
+### TADA
+![Screenshot of my npm](screenshot-npm.png)
+
+## Wrap up
+There is still a lot more to explore with npm. I played around with a few more features, like releasing a new version so that I could include a README file in my package. 
+
+Overall, I really enjoyed this project. It was cool to get hands-on experience exploring a new tool, even though it incldued messing up along the way. I agree with Professor Jensen that being curious is how CS majors stay successful. Our field is under ongoing development and if we never take the time to learn the new aspects, we'll get left behind. 
+
+So, when in doubt, make an npm package yourself. 
