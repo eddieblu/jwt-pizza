@@ -5,7 +5,7 @@ Partners:
 - Tyler Trommlitz
 
 ## Bethany Edwards Self Attack
-I wanted to do something with the fact that userId's are generated in an incremental order, but could not find a worthy exploit and did not have the time. Unfortunately, I will just have to take the 0/25 points. Thanks. 
+I wanted to do something with the fact that userId's are generated in an incremental order, but could not find a worthy exploit and did not have the time.
 
 ## Tyler Trommlitz Self Attack
 | Item           | Result                                                                         |
